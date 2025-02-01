@@ -2,4 +2,5 @@
 
 export(make)
 export(prepare_quarto)
+export(prepare_rstudio)
 export(prepare_shiny)

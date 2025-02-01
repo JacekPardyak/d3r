@@ -56,20 +56,18 @@ const data = ', data, ';')
 
   html = sprintf(html, style, script)
 
-  # NULL mode
-  if(is.null(mode)){html |> writeLines('index.html')}
-  else {
-    # IRdisplay - R kernel and R magic (Kaggle, Colab, etc) mode
-    if(tolower(mode) == 'irdisplay'){html |> IRdisplay::display_html()}
-    # RStudio mode
-    if(tolower(mode) == 'rstudio'){
-      temp <- tempfile(fileext = '.html')
-      html |> writeLines(temp)
-      rstudioapi::viewer(temp)}
-    # Quarto mode. IMPORTANT: #| results: asis
-    if(tolower(mode) == 'quarto'){ html |> prepare_quarto(width = width, height = height)}
-    # Shiny mode.
-    if(tolower(mode) == 'shiny'){ html |> prepare_shiny(width = width, height = height)}
-  }
+  mode <- tolower(mode)  # Normalize mode input
+
+  switch(mode,
+         "irdisplay" = IRdisplay::display_html(html),  # IRkernel (Jupyter, Kaggle, Colab)
+
+         "rstudio" = { prepare_rstudio(html) }, # RStudio mode
+
+         "quarto" = prepare_quarto(html, width = width, height = height),  # Quarto mode
+
+         "shiny" = prepare_shiny(html, width = width, height = height),  # Shiny mode
+
+         { writeLines(html, 'index.html') }  # Default case
+  )
 }
 
