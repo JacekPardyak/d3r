@@ -9,7 +9,7 @@
 #' @return HTML displayed in RStudio Viewer
 #' @export
 
-prepare_rstudio <- function(html){
+serve_rstudio <- function(html){
   temp <- tempfile(fileext = '.html')
   writeLines(html, temp)
   rstudioapi::viewer(temp)

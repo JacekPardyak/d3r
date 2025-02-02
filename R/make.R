@@ -58,16 +58,17 @@ const data = ', data, ';')
 
   mode <- tolower(mode)  # Normalize mode input
 
+  if (is.null(mode)) {
+    writeLines(html, 'index.html')
+    return()
+  }
+
   switch(mode,
          "irdisplay" = IRdisplay::display_html(html),  # IRkernel (Jupyter, Kaggle, Colab)
-
-         "rstudio" = { prepare_rstudio(html) }, # RStudio mode
-
-         "quarto" = prepare_quarto(html, width = width, height = height),  # Quarto mode
-
-         "shiny" = prepare_shiny(html, width = width, height = height),  # Shiny mode
-
-         { writeLines(html, 'index.html') }  # Default case
+         "rstudio" = serve_rstudio(html) , # RStudio mode
+         "quarto" = serve_quarto(html, width = width, height = height),  # Quarto mode
+         "shiny" = serve_shiny(html, width = width, height = height),  # Shiny mode
+         print('Available modes: NULL, IRDisplay, RStudio, Quarto, Shiny')
   )
 }
 

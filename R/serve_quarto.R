@@ -12,7 +12,7 @@
 #' @return A matrix of the infile
 #' @export
 
-prepare_shiny <- function(html, dir = "www", width, height){
+serve_quarto <- function(html, dir = "html_output", width, height){
   temp_html <- tempfile(fileext = ".html")
   file_name <- basename(temp_html)
   writeLines(html, temp_html)
@@ -20,8 +20,7 @@ prepare_shiny <- function(html, dir = "www", width, height){
   if (!dir.exists(output_dir)) dir.create(output_dir)  # Create if it doesn't exist
   new_html_path <- file.path(output_dir, file_name)
   file.copy(temp_html, new_html_path, overwrite = TRUE)
-  shiny::tags$iframe(seamless = "seamless",
-                     src = file_name,
-                     width = width,
-                     height = height)
+  relative_path <- file.path(dir, file_name)
+  string = paste0('<iframe src="', relative_path,'" width=', width,  ', height=', height, '></iframe>')
+  cat(string)
 }
