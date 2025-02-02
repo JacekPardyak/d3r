@@ -56,19 +56,20 @@ const data = ', data, ';')
 
   html = sprintf(html, style, script)
 
-  mode <- tolower(mode)  # Normalize mode input
-
   if (is.null(mode)) {
     writeLines(html, 'index.html')
     return()
   }
 
+  mode <- tolower(mode)  # Normalize mode input
+
   switch(mode,
          "irdisplay" = IRdisplay::display_html(html),  # IRkernel (Jupyter, Kaggle, Colab)
-         "rstudio" = serve_rstudio(html) , # RStudio mode
-         "quarto" = serve_quarto(html, width = width, height = height),  # Quarto mode
-         "shiny" = serve_shiny(html, width = width, height = height),  # Shiny mode
-         print('Available modes: NULL, IRDisplay, RStudio, Quarto, Shiny')
-  )
-}
+         "rstudio"   = serve_rstudio(html),  # RStudio mode
+         "quarto"    = serve_quarto(html, width = width, height = height),  # Quarto mode
+         "shiny"     = serve_shiny(html, width = width, height = height),  # Shiny mode
+         {
+           message("Invalid mode. Available modes: NULL, IRDisplay, RStudio, Quarto, Shiny")
+         }
+  )}
 
