@@ -1,4 +1,3 @@
-system('Rscript ./tests/scripts/script.R')
 
 system("quarto render ./tests/md/document.qmd")
 

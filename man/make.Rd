@@ -52,12 +52,13 @@ data = '[
 { name: "Tanzania", income: 27000, life: 50, pop: 3407, color: "grey" }]'
 script = 'const width = 120, height = 120;
 const svg = d3.select("#container").append("svg").attr("width", width).attr("height", height);
-svg.selectAll("circle").data(data).join("circle")      // binds and joins data to the selection and creates circle elements for each individual data
-.attr("id", function(d) { return d.name })            // set the circle`s id according to the country name
-.attr("cx", function(d) { return d.income / 1000  })  // set the circle`s horizontal position according to income
-.attr("cy", function(d) { return d.life })            // set the circle`s vertical position according to life expectancy
-.attr("r",  function(d) { return d.pop / 1000 *2 })   // set the circle`s radius according to country`s population
-.attr("fill", function(d) { return d.color });        // set the circle`s color according to country`s color
+svg.selectAll("circle").data(data).join("circle")     // for each data row create circle
+.attr("id", function(d) { return d.name })            // set country name as circle identifier
+.attr("cx", function(d) { return d.income / 1000  })  // set income as circle cx
+.attr("cy", function(d) { return d.life })            // set life expectancy as circle cy
+.attr("r",  function(d) { return d.pop / 1000 *2 })   // set country`s population as circle r
+.attr("fill", function(d) { return d.color });        // set country`s color as circle fill color
 '
 make(script = script, dir = "tests", style = style, data = data, title = title)
+
 }
