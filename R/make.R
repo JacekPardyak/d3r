@@ -88,8 +88,9 @@ const data = ', data, ';')
          "rstudio"   = serve_rstudio(html),  # RStudio mode
          "quarto"    = serve_quarto(html, dir = dir, width = width, height = height),  # Quarto mode
          "shiny"     = serve_shiny(html, width = width, height = height),  # Shiny mode
+         "selenium"  = serve_selenium(html),  # Selenium mode
          {
-           message("Invalid mode. Available modes: NULL, Jupyter, RStudio, Quarto, Shiny")
+           message("Invalid mode. Available modes: NULL, Jupyter, RStudio, Quarto, Shiny, Selenium")
          }
   )}
 

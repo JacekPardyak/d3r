@@ -1,6 +1,6 @@
 Package: d3r
 Type: Package
-Title: d3r: Data-Driven Documents (D3) in R
+Title: d3r: Data-Driven Documents (D3) for the R Ecosystem
 Version: 0.1.0
 Authors@R: c(
     person(
@@ -9,14 +9,17 @@ Authors@R: c(
       role = c("aut", "cre")
     )
   )
-Description: d3r is an R package designed to seamlessly integrate D3.js into your R environment, enabling dynamic and interactive data visualizations. Whether you're working in RStudio, Shiny, Quarto, Jupyter (IRkernel), or plain HTML, d3r provides an easy way to create, embed, and interact with D3.js-based charts, graphs, and visualizations without needing deep JavaScript knowledge.
+Description: d3r is an R package designed to seamlessly integrate D3.js into your R environment, enabling dynamic and interactive data visualizations. Whether you're working in RStudio, Shiny, Quarto, Jupyter, Selenium, or plain HTML, d3r provides an easy way to create, embed, and interact with D3.js-based charts, graphs, and visualizations without needing deep JavaScript knowledge.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/JacekPardyak/d3r/issues
-Imports:
+Suggests:
     IRdisplay,
     rstudioapi,
-    shiny
+    shiny,
+    selenider,
+    utils,
+    chromote
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
