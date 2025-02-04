@@ -46,7 +46,7 @@ svg.append("circle")
   .attr("cy", 150)  // Y position
   .attr("r", 50)    // Radius
   .attr("fill", "steelblue");  // Color
-'  |> make(title = "D3.js in R", mode = "selenium")  |> knitr::include_graphics()
+'  |> make(title = "D3.js in R", mode = "selenium")  |> give()
 ```
 
-<img src="../../../AppData/Local/Temp/RtmpIj4Mhf/file591051924311.png" width="929" />
+<img src="./man/file1dbc4b4b42d3.png" width="929" />
