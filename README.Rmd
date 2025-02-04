@@ -10,8 +10,9 @@ output: github_document
   <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg" style="height: 150px;">
 </div>
 
-> [!CAUTION]
-> d3r is an R package designed to seamlessly integrate D3.js into your R environment, enabling dynamic and interactive data visualizations. Whether you're working in RStudio, Shiny, Quarto, Jupyter, Selenium, or plain HTML, d3r provides an easy way to create, embed, and interact with D3.js-based charts, graphs, and visualizations without needing deep JavaScript knowledge.
+</br>
+
+`d3r` is an R package designed to seamlessly integrate D3.js into your R ecosystem, enabling dynamic and interactive data visualizations. Whether you're working in RStudio, Shiny, Quarto, Jupyter, Selenium, or plain HTML, `d3r` provides an easy way to create, embed, and interact with D3.js-based charts, graphs, and visualizations without needing deep JavaScript knowledge.
 
 # Installation
 
@@ -33,22 +34,78 @@ In these usage examples, we use `Selenium` mode to take screenshots of documents
 
 ```{r}
 library(d3r)
-'// Set SVG dimensions
-const width = 400, height = 300;
+# Sample hierarchical data
+data = '{
+  name: "Root",
+  children: [
+    { name: "A", value: 100 },
+    { name: "B", value: 200 },
+    { name: "C", value: 50 },
+    { 
+      name: "D", 
+      children: [
+        { name: "D1", value: 30 },
+        { name: "D2", value: 70 }
+      ]
+    }
+  ]
+}'
+
+# CSS style
+style = '
+ text {
+  font-size: 24px;
+  fill: black;
+  text-anchor: middle;
+}
+'
+
+# JavaScript
+script = '// Set SVG dimensions
+const width = 600, height = 600;
 
 // Create SVG inside the div
 const svg = d3.select("#container")
   .append("svg")
   .attr("width", width)
   .attr("height", height);
-
-// Append a circle
-svg.append("circle")
-  .attr("cx", 200)  // X position
-  .attr("cy", 150)  // Y position
-  .attr("r", 50)    // Radius
-  .attr("fill", "steelblue");  // Color
-'  |> make(title = "D3.js in R", mode = "selenium")  |> give()
+      
+// Create a hierarchical layout
+const root = d3.hierarchy(data)
+  .sum(d => d.value)  // Aggregate values for sizing
+  .sort((a, b) => b.value - a.value);
+    
+const pack = d3.pack()
+  .size([width - 20, height - 20])
+  .padding(5);
+    
+pack(root);
+    
+// Draw circles
+const node = svg.selectAll("circle")
+  .data(root.descendants())
+  .enter().append("circle")
+  .attr("cx", d => d.x)
+  .attr("cy", d => d.y)
+  .attr("r", d => d.r)
+  .style("fill", (d, i) => d.depth === 0 ? "#ddd" : d.depth === 1 ? "#69b3a2" : "#ff9999")
+  .style("stroke", "#333")
+  .style("opacity", 0.8);
+    
+// Add labels
+svg.selectAll("text")
+  .data(root.descendants())
+  .enter().append("text")
+  .attr("x", d => d.x)
+  .attr("y", d => d.y)
+  .attr("dy", "0.3em")
+  .text(d => d.children ? "" : d.data.name); // Hide labels for parent nodes
+' 
+make(script = script, 
+     data = data, 
+     style = style, 
+     mode = "selenium", 
+     title = "D3.js Circular Packing") |> give()
 ```
 
 
