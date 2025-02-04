@@ -2,25 +2,22 @@
 % Please edit documentation in R/serve_quarto.R
 \name{serve_quarto}
 \alias{serve_quarto}
-\title{Load a Matrix}
+\title{Serve D3.js in Quarto}
 \usage{
-serve_quarto(html, dir = "html_output", width, height)
+serve_quarto(html, dir, width, height)
 }
 \arguments{
-\item{html}{Path to the input file}
+\item{html}{HTML string}
 
-\item{dir}{description}
+\item{dir}{Directory for HTML file}
 
-\item{width}{description}
+\item{width}{iframe width}
 
-\item{height}{description}
+\item{height}{iframe height}
 }
 \value{
-A matrix of the infile
+Iframe embedded in Quarto or R Markdown document
 }
 \description{
-This function loads a file as a matrix. It assumes that the first column
-contains the rownames and the subsequent columns are the sample identifiers.
-Any rows with duplicated row names will be dropped with the first one being
-kepted.
+This function serves D3.js output in Quarto
 }

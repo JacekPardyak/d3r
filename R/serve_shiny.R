@@ -1,18 +1,15 @@
-#' Load a Matrix
+#' Serve D3.js in Shiny
 #'
-#' This function loads a file as a matrix. It assumes that the first column
-#' contains the rownames and the subsequent columns are the sample identifiers.
-#' Any rows with duplicated row names will be dropped with the first one being
-#' kepted.
+#' This function serves D3.js output in Shiny
 #'
-#' @param html Path to the input file
-#' @param dir description
-#' @param width description
-#' @param height description
-#' @return A matrix of the infile
+#' @param html HTML string
+#' @param width iframe width
+#' @param height iframe height
+#' @return Shiny HTML tag iframe
 #' @export
 
-serve_shiny <- function(html, dir = "www", width, height){
+serve_shiny <- function(html, width, height){
+  dir = "www"
   temp_html <- tempfile(fileext = ".html")
   file_name <- basename(temp_html)
   writeLines(html, temp_html)

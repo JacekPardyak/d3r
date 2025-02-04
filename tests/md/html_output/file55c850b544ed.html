@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>d3r</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>svg {
+  border: 1px solid black;
+}</style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>// Set title
+d3.select("#container")
+  .insert("h2", ":first-child")
+  .text("Draw Something & Download It"); 
+// Dimensions and margins
+const width = 580;
+const height = 400;
+
+// Create SVG container
+const svg = d3.select("#container")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+let is_drawing = false; // Changed from const to let
+
+svg.on("mousemove", function(event) {
+    var pos = d3.pointer(event, this); // Updated for D3 v6+
+    if (is_drawing) {
+        svg.append("circle")
+            .attr("cx", pos[0])
+            .attr("cy", pos[1])
+            .style("fill", "red")
+            .attr("r", 3);
+    }
+}).on("mousedown", function() {
+    is_drawing = true;
+}).on("mouseup", function() {
+    is_drawing = false;
+});
+
+// Create a separate div for the button
+const buttonContainer = d3.select("body")
+    .append("div")
+    .attr("id", "buttonContainer")
+    .style("margin-top", "10px");
+    
+// Add download button
+buttonContainer.append("button")
+  .text("Download SVG")
+  .on("click", function() {
+    const serializer = new XMLSerializer();
+    const svgBlob = new Blob([serializer.serializeToString(svg.node())], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(svgBlob);
+  
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "drawing.svg";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
+

@@ -2,7 +2,7 @@
 % Please edit documentation in R/serve_rstudio.R
 \name{serve_rstudio}
 \alias{serve_rstudio}
-\title{Load a Matrix}
+\title{Serve D3.js in RStudio}
 \usage{
 serve_rstudio(html)
 }
@@ -13,8 +13,5 @@ serve_rstudio(html)
 HTML displayed in RStudio Viewer
 }
 \description{
-This function loads a file as a matrix. It assumes that the first column
-contains the rownames and the subsequent columns are the sample identifiers.
-Any rows with duplicated row names will be dropped with the first one being
-kepted.
+This function serves D3.js output in RStudio Viewer
 }

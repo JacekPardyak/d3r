@@ -1,18 +1,15 @@
-#' Load a Matrix
+#' Serve D3.js in Quarto
 #'
-#' This function loads a file as a matrix. It assumes that the first column
-#' contains the rownames and the subsequent columns are the sample identifiers.
-#' Any rows with duplicated row names will be dropped with the first one being
-#' kepted.
+#' This function serves D3.js output in Quarto
 #'
-#' @param html Path to the input file
-#' @param dir description
-#' @param width description
-#' @param height description
-#' @return A matrix of the infile
+#' @param html HTML string
+#' @param dir Directory for HTML file
+#' @param width iframe width
+#' @param height iframe height
+#' @return Iframe embedded in Quarto or R Markdown document
 #' @export
 
-serve_quarto <- function(html, dir = "html_output", width, height){
+serve_quarto <- function(html, dir, width, height){
   temp_html <- tempfile(fileext = ".html")
   file_name <- basename(temp_html)
   writeLines(html, temp_html)

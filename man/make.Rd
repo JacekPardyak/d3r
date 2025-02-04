@@ -2,7 +2,7 @@
 % Please edit documentation in R/make.R
 \name{make}
 \alias{make}
-\title{Load a Matrix}
+\title{Make HTML from D3.js script}
 \usage{
 make(
   script,
@@ -11,33 +11,53 @@ make(
   data = NULL,
   title = NULL,
   mode = NULL,
+  dir = NULL,
   width = 600,
   height = 400
 )
 }
 \arguments{
-\item{script}{Path to the input file}
+\item{script}{JavaScript string}
 
-\item{style}{Path to the input file}
+\item{style}{(optional) CSS string}
 
-\item{html}{Path to the input file}
+\item{html}{(optional) HTML template string}
 
-\item{data}{Path to the input file}
+\item{data}{(optional) JSON string. This adds line \verb{const data = <your_data>;} to the JavaScript.}
 
-\item{title}{Path to the input file}
+\item{title}{(optional) Title}
 
-\item{mode}{Path to the input file}
+\item{mode}{Available modes: NULL, Jupyter, RStudio, Quarto, Shiny"}
 
-\item{width}{iframe width}
+\item{dir}{(optional) Directory to store HTML file}
 
-\item{height}{Path to the input file}
+\item{width}{(optional) iframe width for Shiny and Quarto}
+
+\item{height}{(optional) iframe height for Shiny and Quarto}
 }
 \value{
-A matrix of the infile
+HTML document presentation appropriate to the \code{mode}
 }
 \description{
-This function loads a file as a matrix. It assumes that the first column
-contains the rownames and the subsequent columns are the sample identifiers.
-Any rows with duplicated row names will be dropped with the first one being
-kepted.
+This function serves D3.js output in Quarto, Shiny, Jupyter, RStudio or HTML.
+For debugging use \code{Source} > \code{Console} in your browser.
+}
+\examples{
+# Create SVG elements from data
+title = 'd3r example' # Title in H2
+style = 'svg {background-color: #D0D0D0;}' # CSS Style
+data = '[
+{ name: "Ireland", income: 53000, life: 78, pop: 6378, color: "black" },
+{ name: "Norway", income: 73000, life: 87, pop: 5084, color: "blue" },
+{ name: "Tanzania", income: 27000, life: 50, pop: 3407, color: "grey" }]'
+script = 'const width = 120, height = 120;
+const svg = d3.select("#container").append("svg").attr("width", width).attr("height", height);
+svg.selectAll("circle").data(data).join("circle")      // binds and joins data to the selection and creates circle elements for each individual data
+.attr("id", function(d) { return d.name })            // set the circle`s id according to the country name
+.attr("cx", function(d) { return d.income / 1000  })  // set the circle`s horizontal position according to income
+.attr("cy", function(d) { return d.life })            // set the circle`s vertical position according to life expectancy
+.attr("r",  function(d) { return d.pop / 1000 *2 })   // set the circle`s radius according to country`s population
+.attr("fill", function(d) { return d.color });        // set the circle`s color according to country`s color
+'
+make(script = script, dir = "tests", style = style, data = data, title = title)
 }

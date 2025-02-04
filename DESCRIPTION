@@ -1,6 +1,6 @@
 Package: d3r
 Type: Package
-Title: d3r: Embed D3.js in RStudio, Shiny, Quarto, RMarkdown, IRkernel, or Simple HTML
+Title: d3r: Data-Driven Documents (D3) in R
 Version: 0.1.0
 Authors@R: c(
     person(

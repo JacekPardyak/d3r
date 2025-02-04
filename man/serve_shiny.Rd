@@ -2,25 +2,20 @@
 % Please edit documentation in R/serve_shiny.R
 \name{serve_shiny}
 \alias{serve_shiny}
-\title{Load a Matrix}
+\title{Serve D3.js in Shiny}
 \usage{
-serve_shiny(html, dir = "www", width, height)
+serve_shiny(html, width, height)
 }
 \arguments{
-\item{html}{Path to the input file}
+\item{html}{HTML string}
 
-\item{dir}{description}
+\item{width}{iframe width}
 
-\item{width}{description}
-
-\item{height}{description}
+\item{height}{iframe height}
 }
 \value{
-A matrix of the infile
+Shiny HTML tag iframe
 }
 \description{
-This function loads a file as a matrix. It assumes that the first column
-contains the rownames and the subsequent columns are the sample identifiers.
-Any rows with duplicated row names will be dropped with the first one being
-kepted.
+This function serves D3.js output in Shiny
 }
