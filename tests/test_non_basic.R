@@ -9,4 +9,5 @@ system('Rscript -e "shiny::runApp(\\"./tests/shiny/app.R\\", launch.browser = TR
 
 system('Rscript -e "shiny::runApp(\\"./tests/shiny_minimal/app.R\\", launch.browser = TRUE)"')
 
-#Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
+#
+Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)

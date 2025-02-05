@@ -22,7 +22,7 @@ devtools::install_github("JacekPardyak/d3r", upgrade = "never")
 
 ```{r, echo=FALSE}
 give <- function(source_path){
-  destination_dir <- "./man"
+  destination_dir <- "./man/logos/"
   file.copy(source_path, destination_dir)
   file.path(destination_dir, basename(source_path)) |> knitr::include_graphics()
 }
@@ -109,6 +109,18 @@ make(script = script,
      title = "D3.js Circular Packing") |> give()
 ```
 
+## Usage through the R6 class 
+
+```{r}
+chart <- d3r$new(
+  script = 'console.log(`Hello, ${data[0]}`);',
+  title = "Check the Browser Console (F12 → Console Tab)",
+  mode = "rstudio",
+  data = jsonlite::toJSON(Sys.info()[["user"]])
+)
+
+chart$make()
+```
 
 ## Available modes
 
@@ -201,6 +213,9 @@ const path = svg.append("path")
 });'
 make(script = script, mode = 'Quarto', width = 430, height = 230)
 ```
+
+
+## Minimal Working non-HTML Quarto Doc
 
 ## Debugging
 

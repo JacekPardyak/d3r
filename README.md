@@ -109,7 +109,22 @@ make(script = script,
      title = "D3.js Circular Packing") |> give()
 ```
 
-<img src="./man/file257c1aa2685d.png" width="929" />
+<img src="./man/logos//file1ad87539b.png" width="929" />
+
+## Usage through the R6 class
+
+``` r
+chart <- d3r$new(
+  script = 'console.log(`Hello, ${data[0]}`);',
+  title = "Check the Browser Console (F12 → Console Tab)",
+  mode = "rstudio",
+  data = jsonlite::toJSON(Sys.info()[["user"]])
+)
+
+chart$make()
+```
+
+    ## NULL
 
 ## Available modes
 
@@ -198,6 +213,8 @@ Set R chunk option `#| results: asis`
         d3.select(this).attr("fill", "tomato");
     });'
     make(script = script, mode = 'Quarto', width = 430, height = 230)
+
+## Minimal Working non-HTML Quarto Doc
 
 ## Debugging
 
