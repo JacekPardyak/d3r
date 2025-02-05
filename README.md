@@ -109,7 +109,7 @@ make(script = script,
      title = "D3.js Circular Packing") |> give()
 ```
 
-<img src="./man/file568078776f4d.png" width="929" />
+<img src="./man/file257c1aa2685d.png" width="929" />
 
 ## Available modes
 
