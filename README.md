@@ -5,8 +5,8 @@ d3r: Data-Driven Documents (D3) in R Ecosystem
 
 <div style="display: flex; align-items: center;">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Logo_D3.svg" style="height: 150px; margin-right: 10px;">
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg" style="height: 150px;">
+<img src="./man/logos/Logo_D3.svg" style="height: 150px; margin-right: 10px;">
+<img src="./man/logos/R_logo.svg" style="height: 150px;">
 
 </div>
 
@@ -109,4 +109,98 @@ make(script = script,
      title = "D3.js Circular Packing") |> give()
 ```
 
-<img src="./man/file58c870ea73b4.png" width="929" />
+<img src="./man/file568078776f4d.png" width="929" />
+
+## Available modes
+
+- If mode = `NULL`, the HTML is served directly in `index.html`.
+
+- If mode = `jupyter`, the output is displayed in Jupyter Notebook.
+
+- If mode = `rstudio`, it will attempt to render inside RStudio.
+
+- If mode = `quarto`, it will render in Quarto with the specified iframe
+  width/height.
+
+- If mode = `shiny`, it will render as a Shiny component with the
+  specified iframe width/height.
+
+- If mode = `selenium`, it will use Selenium to take a snapshot.
+
+## Minimal Working Shiny App
+
+``` r
+library(shiny)
+library(d3r)
+
+# Define UI
+ui <- fluidPage(
+  titlePanel("Minimal Interactive Shiny App"),
+  htmlOutput("d3r")
+)
+
+# Define Server
+server <- function(input, output) {
+  output$d3r <- renderUI({
+    script = '
+      const width = 400;
+      const height = 200;
+      const svg = d3.select("#container")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+      // Append a circle
+      const circle = svg.append("circle")
+        .attr("cx", 200)
+        .attr("cy", 100)
+        .attr("r", 40)
+        .attr("fill", "steelblue")
+        .on("click", function() {
+          // Change color on click
+          d3.select(this).attr("fill", "tomato");
+      });'
+    make(script = script, mode = 'Shiny', width = 430, height = 230)
+    })
+}
+
+# Run the App
+shinyApp(ui = ui, server = server)
+```
+
+## Minimal Working Quarto Doc
+
+    ---
+    title: "Minimal Interactive Quarto Doc"
+    format: html
+    ---
+
+Set R chunk option `#| results: asis`
+
+    library(d3r)
+    script = '
+    const width = 400;
+    const height = 200;
+    const svg = d3.select("#container")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+    // Define a simple path (triangle)
+    const pathData = "M 100 150 L 200 50 L 300 150 Z"; // A simple triangle
+
+    // Append a path
+    const path = svg.append("path")
+      .attr("d", pathData)
+      .attr("fill", "steelblue")
+      .attr("stroke", "black")
+      .attr("stroke-width", 2)
+      .on("click", function() {
+        // Change color on click
+        d3.select(this).attr("fill", "tomato");
+    });'
+    make(script = script, mode = 'Quarto', width = 430, height = 230)
+
+## Debugging
+
+Check the Browser Console (`F12` → Console Tab) and look for errors like
+Uncaught TypeError (e.g., `incorrect d3.select() usage`). You can also
+use `console.log(d3.select("svg"))` to inspect elements.
