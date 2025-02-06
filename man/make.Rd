@@ -27,13 +27,21 @@ make(
 
 \item{title}{(optional) Title}
 
-\item{mode}{Available modes: NULL, Jupyter, RStudio, Quarto, Shiny"}
+\item{mode}{Available modes: NULL, Jupyter, RStudio, Quarto, Shiny, Selenium
+\itemize{
+\item If mode = \code{NULL}, the HTML is served directly in \code{dir/index.html}.
+\item If mode = \code{jupyter}, the output is displayed in Jupyter Notebook.
+\item If mode = \code{rstudio}, it will attempt to render inside RStudio.
+\item If mode = \code{quarto}, it will render in Quarto with the specified HTML iframe width/height.
+\item If mode = \code{shiny}, it will render as a Shiny component with the specified iframe width/height.
+\item If mode = \code{selenium}, it will use Selenium to extract produced SVG.
+}}
 
-\item{dir}{(optional) Directory to store HTML file}
+\item{dir}{(optional) Directory to store HTML/SVG file}
 
-\item{width}{(optional) iframe width for Shiny and Quarto}
+\item{width}{(optional) iframe width for Shiny and Quarto iframe}
 
-\item{height}{(optional) iframe height for Shiny and Quarto}
+\item{height}{(optional) iframe height for Shiny and Quarto iframe}
 }
 \value{
 HTML document presentation appropriate to the \code{mode}

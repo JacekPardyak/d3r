@@ -23,6 +23,8 @@ Suggests:
     selenider,
     utils,
     chromote,
-    jsonlite
+    jsonlite,
+    rvest,
+    xml2
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2

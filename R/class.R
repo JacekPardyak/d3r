@@ -116,19 +116,11 @@ const data = %s;', self$data)
                           "rstudio"   = serve_rstudio(html),
                           "quarto"    = serve_quarto(html, dir = self$dir, width = self$width, height = self$height),
                           "shiny"     = serve_shiny(html, width = self$width, height = self$height),
-                          "selenium"  = serve_selenium(html),
+                          "selenium"  = serve_selenium(html, dir),
                           message("Invalid mode. Available modes: NULL, Jupyter, RStudio, Quarto, Shiny, Selenium")
                    )
                  }
                )
-               #,
-               #private = list(
-              #   serve_rstudio = function(html){
-              #     temp <- tempfile(fileext = '.html')
-              #     writeLines(html, temp)
-              #     rstudioapi::viewer(temp)
-              #   }
-             #)
 )
 
 

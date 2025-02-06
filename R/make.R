@@ -8,10 +8,16 @@
 #' @param html (optional) HTML template string
 #' @param data (optional) JSON string. This adds line `const data = <your_data>;` to the JavaScript.
 #' @param title (optional) Title
-#' @param dir (optional) Directory to store HTML file
-#' @param mode Available modes: NULL, Jupyter, RStudio, Quarto, Shiny"
-#' @param width (optional) iframe width for Shiny and Quarto
-#' @param height (optional) iframe height for Shiny and Quarto
+#' @param dir (optional) Directory to store HTML/SVG file
+#' @param mode Available modes: NULL, Jupyter, RStudio, Quarto, Shiny, Selenium
+#' - If mode = `NULL`, the HTML is served directly in `dir/index.html`.
+#' - If mode = `jupyter`, the output is displayed in Jupyter Notebook.
+#' - If mode = `rstudio`, it will attempt to render inside RStudio.
+#' - If mode = `quarto`, it will render in Quarto with the specified HTML iframe width/height.
+#' - If mode = `shiny`, it will render as a Shiny component with the specified iframe width/height.
+#' - If mode = `selenium`, it will use Selenium to extract produced SVG.
+#' @param width (optional) iframe width for Shiny and Quarto iframe
+#' @param height (optional) iframe height for Shiny and Quarto iframe
 #' @return HTML document presentation appropriate to the `mode`
 #' @examples
 #' # Create SVG elements from data
@@ -88,7 +94,7 @@ const data = ', data, ';')
          "rstudio"   = serve_rstudio(html),  # RStudio mode
          "quarto"    = serve_quarto(html, dir = dir, width = width, height = height),  # Quarto mode
          "shiny"     = serve_shiny(html, width = width, height = height),  # Shiny mode
-         "selenium"  = serve_selenium(html),  # Selenium mode
+         "selenium"  = serve_selenium(html, dir),  # Selenium mode
          {
            message("Invalid mode. Available modes: NULL, Jupyter, RStudio, Quarto, Shiny, Selenium")
          }

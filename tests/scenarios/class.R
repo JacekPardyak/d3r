@@ -8,4 +8,5 @@ chart <- d3r$new(
 )
 
 chart$make()
+
 file.remove("index.html")

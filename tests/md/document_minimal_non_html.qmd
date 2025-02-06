@@ -1,0 +1,32 @@
+---
+title: "Minimal DOCX/PDF Quarto Doc"
+format: pdf
+---
+
+```{r}
+library(d3r)
+script = '
+const width = 400;
+const height = 200;
+const svg = d3.select("#container")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height);
+// Define a simple path (triangle)
+const pathData = "M 100 150 L 200 50 L 300 150 Z"; // A simple triangle
+
+// Append a path
+const path = svg.append("path")
+  .attr("d", pathData)
+  .attr("fill", "steelblue")
+  .attr("stroke", "black")
+  .attr("stroke-width", 2)
+  .on("click", function() {
+    // Change color on click
+    d3.select(this).attr("fill", "tomato");
+});'
+make(script = script, mode = 'selenium') |> rsvg::rsvg_pdf("out.pdf")
+# conversion to PDF is not needed when format is DOCX
+knitr::include_graphics("out.pdf")
+```
+

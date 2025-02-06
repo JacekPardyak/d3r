@@ -14,5 +14,6 @@ svg.append("circle")
   .attr("cy", 150)  // Y position
   .attr("r", 50)    // Radius
   .attr("fill", "steelblue");  // Color
-'  |> make(title = "D3.js in R", dir = "tests")
+'  |> make(title = "D3.js in R", dir = "tests/scenarios/")
 
+file.remove("tests/scenarios/index.html")

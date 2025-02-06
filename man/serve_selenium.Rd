@@ -4,14 +4,16 @@
 \alias{serve_selenium}
 \title{Serve D3.js in Selenium}
 \usage{
-serve_selenium(html)
+serve_selenium(html, dir)
 }
 \arguments{
 \item{html}{HTML string}
+
+\item{dir}{SVG output directory}
 }
 \value{
-path of the screenshot PNG file
+path of the SVG file (before: screenshot PNG file)
 }
 \description{
-This function serves D3.js output in Selenium and takes screenshot
+This function serves D3.js output in Selenium and returns SVG (before: takes screenshot)
 }

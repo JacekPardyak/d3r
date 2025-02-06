@@ -15,4 +15,4 @@ svg.append("circle")
   .attr("cy", 150)  // Y position
   .attr("r", 50)    // Radius
   .attr("fill", "steelblue");  // Color
-'  |> make(title = "D3.js in R", mode = "selenium") # |> rstudioapi::viewer()
+'  |> make(mode = "selenium") # |> rstudioapi::viewer() for me opens Inkscape
