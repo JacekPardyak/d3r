@@ -27,24 +27,24 @@ d3r <- R6::R6Class("d3r",
                  height = 400,
                  # Constructor
                  #' @description Initialize the class with default values.
-                 #' @field script description
-                 #' @param script description script A character string (default is "default").
-                 #' @field style description
-                 #' @param style description
-                 #' @field html description
-                 #' @param html description
-                 #' @field data description
-                 #' @param data description
-                 #' @field title description
-                 #' @param title description
-                 #' @field mode description
-                 #' @param mode description
-                 #' @field dir description
-                 #' @param dir description
-                 #' @field width description
-                 #' @param width description
-                 #' @field height description
-                 #' @param height description
+                 #' @field script JavaScript string
+                 #' @param script JavaScript string
+                 #' @field style (optional) CSS string
+                 #' @param style (optional) CSS string
+                 #' @field html (optional) HTML template string
+                 #' @param html (optional) HTML template string
+                 #' @field data (optional) JSON string. This adds line `const data = <your_data>;` to the JavaScript.
+                 #' @param data (optional) JSON string. This adds line `const data = <your_data>;` to the JavaScript.
+                 #' @field title (optional) Title
+                 #' @param title (optional) Title
+                 #' @field mode Available modes: NULL, Jupyter, RStudio, Quarto, Shiny, Selenium
+                 #' @param mode Available modes: NULL, Jupyter, RStudio, Quarto, Shiny, Selenium
+                 #' @field dir (optional) Directory to store HTML/SVG file
+                 #' @param dir (optional) Directory to store HTML/SVG file
+                 #' @field width (optional) iframe width for Shiny and Quarto iframe
+                 #' @param width (optional) iframe width for Shiny and Quarto iframe
+                 #' @field height (optional) iframe height for Shiny and Quarto iframe
+                 #' @param height (optional) iframe height for Shiny and Quarto iframe
                  initialize = function(script, style = NULL, html = NULL, data = NULL, title = NULL,
                                        mode = NULL, dir = NULL, width = 600, height = 400) {
                    self$script <- script

@@ -20,23 +20,23 @@ file.remove("index.html")
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{script}}{description}
+\item{\code{script}}{JavaScript string}
 
-\item{\code{style}}{description}
+\item{\code{style}}{(optional) CSS string}
 
-\item{\code{html}}{description}
+\item{\code{html}}{(optional) HTML template string}
 
-\item{\code{data}}{description}
+\item{\code{data}}{(optional) JSON string. This adds line \verb{const data = <your_data>;} to the JavaScript.}
 
-\item{\code{title}}{description}
+\item{\code{title}}{(optional) Title}
 
-\item{\code{mode}}{description}
+\item{\code{mode}}{Available modes: NULL, Jupyter, RStudio, Quarto, Shiny, Selenium}
 
-\item{\code{dir}}{description}
+\item{\code{dir}}{(optional) Directory to store HTML/SVG file}
 
-\item{\code{width}}{description}
+\item{\code{width}}{(optional) iframe width for Shiny and Quarto iframe}
 
-\item{\code{height}}{description}
+\item{\code{height}}{(optional) iframe height for Shiny and Quarto iframe}
 }
 \if{html}{\out{</div>}}
 }
@@ -71,23 +71,23 @@ Initialize the class with default values.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{script}}{description script A character string (default is "default").}
+\item{\code{script}}{JavaScript string}
 
-\item{\code{style}}{description}
+\item{\code{style}}{(optional) CSS string}
 
-\item{\code{html}}{description}
+\item{\code{html}}{(optional) HTML template string}
 
-\item{\code{data}}{description}
+\item{\code{data}}{(optional) JSON string. This adds line \verb{const data = <your_data>;} to the JavaScript.}
 
-\item{\code{title}}{description}
+\item{\code{title}}{(optional) Title}
 
-\item{\code{mode}}{description}
+\item{\code{mode}}{Available modes: NULL, Jupyter, RStudio, Quarto, Shiny, Selenium}
 
-\item{\code{dir}}{description}
+\item{\code{dir}}{(optional) Directory to store HTML/SVG file}
 
-\item{\code{width}}{description}
+\item{\code{width}}{(optional) iframe width for Shiny and Quarto iframe}
 
-\item{\code{height}}{description}
+\item{\code{height}}{(optional) iframe height for Shiny and Quarto iframe}
 }
 \if{html}{\out{</div>}}
 }
